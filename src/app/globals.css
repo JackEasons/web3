@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 赛博朋克色彩方案 */
+    --background: 220 13% 9%;
+    --foreground: 180 100% 90%;
+    --card: 220 13% 12%;
+    --card-foreground: 180 100% 90%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 180 100% 90%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 13% 9%;
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 220 13% 9%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 180 50% 70%;
+    --accent: 320 100% 50%;
+    --accent-foreground: 220 13% 9%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 220 13% 9%;
+    --border: 180 100% 25%;
+    --input: 220 13% 15%;
+    --ring: 180 100% 50%;
+    --radius: 0.5rem;
+    
+    /* 赛博朋克霓虹色彩 */
+    --neon-cyan: 180 100% 50%;
+    --neon-pink: 320 100% 50%;
+    --neon-purple: 280 100% 50%;
+    --neon-green: 120 100% 50%;
+    --neon-blue: 240 100% 50%;
+    --neon-yellow: 60 100% 50%;
+  }
+
+  .dark {
+    --background: 220 13% 9%;
+    --foreground: 180 100% 90%;
+    --card: 220 13% 12%;
+    --card-foreground: 180 100% 90%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 180 100% 90%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 13% 9%;
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 220 13% 9%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 180 50% 70%;
+    --accent: 320 100% 50%;
+    --accent-foreground: 220 13% 9%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 220 13% 9%;
+    --border: 180 100% 25%;
+    --input: 220 13% 15%;
+    --ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+  }
+}
+
+/* 赛博朋克动画效果 */
+@layer utilities {
+  /* 淡入向上动画 */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 淡入动画 */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* 缩放淡入动画 */
+  @keyframes scale-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* 霓虹发光动画 */
+  @keyframes neon-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)), 0 0 15px hsl(var(--neon-cyan));
+      box-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)), 0 0 15px hsl(var(--neon-cyan));
+    }
+    50% {
+      text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan)), 0 0 40px hsl(var(--neon-cyan));
+      box-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan)), 0 0 30px hsl(var(--neon-cyan)), 0 0 40px hsl(var(--neon-cyan));
+    }
+  }
+  
+  /* 霓虹粉色发光 */
+  @keyframes neon-pink-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px hsl(var(--neon-pink)), 0 0 10px hsl(var(--neon-pink)), 0 0 15px hsl(var(--neon-pink));
+      box-shadow: 0 0 5px hsl(var(--neon-pink)), 0 0 10px hsl(var(--neon-pink)), 0 0 15px hsl(var(--neon-pink));
+    }
+    50% {
+      text-shadow: 0 0 10px hsl(var(--neon-pink)), 0 0 20px hsl(var(--neon-pink)), 0 0 30px hsl(var(--neon-pink)), 0 0 40px hsl(var(--neon-pink));
+      box-shadow: 0 0 10px hsl(var(--neon-pink)), 0 0 20px hsl(var(--neon-pink)), 0 0 30px hsl(var(--neon-pink)), 0 0 40px hsl(var(--neon-pink));
+    }
+  }
+  
+  /* 霓虹紫色发光 */
+  @keyframes neon-purple-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px hsl(var(--neon-purple)), 0 0 10px hsl(var(--neon-purple)), 0 0 15px hsl(var(--neon-purple));
+      box-shadow: 0 0 5px hsl(var(--neon-purple)), 0 0 10px hsl(var(--neon-purple)), 0 0 15px hsl(var(--neon-purple));
+    }
+    50% {
+      text-shadow: 0 0 10px hsl(var(--neon-purple)), 0 0 20px hsl(var(--neon-purple)), 0 0 30px hsl(var(--neon-purple)), 0 0 40px hsl(var(--neon-purple));
+      box-shadow: 0 0 10px hsl(var(--neon-purple)), 0 0 20px hsl(var(--neon-purple)), 0 0 30px hsl(var(--neon-purple)), 0 0 40px hsl(var(--neon-purple));
+    }
+  }
+  
+  /* 霓虹绿色发光 */
+  @keyframes neon-green-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px hsl(var(--neon-green)), 0 0 10px hsl(var(--neon-green)), 0 0 15px hsl(var(--neon-green));
+      box-shadow: 0 0 5px hsl(var(--neon-green)), 0 0 10px hsl(var(--neon-green)), 0 0 15px hsl(var(--neon-green));
+    }
+    50% {
+      text-shadow: 0 0 10px hsl(var(--neon-green)), 0 0 20px hsl(var(--neon-green)), 0 0 30px hsl(var(--neon-green)), 0 0 40px hsl(var(--neon-green));
+      box-shadow: 0 0 10px hsl(var(--neon-green)), 0 0 20px hsl(var(--neon-green)), 0 0 30px hsl(var(--neon-green)), 0 0 40px hsl(var(--neon-green));
+    }
+  }
+  
+  /* 扫描线动画 */
+  @keyframes scan-lines {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  /* 故障艺术动画 */
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+  
+  /* 数字雨动画 */
+  @keyframes digital-rain {
+    0% {
+      transform: translateY(-100vh);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  /* 电路板脉冲 */
+  @keyframes circuit-pulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* 霓虹边框动画 */
+  @keyframes neon-border {
+    0%, 100% {
+      border-color: hsl(var(--neon-cyan));
+      box-shadow: 0 0 5px hsl(var(--neon-cyan)), inset 0 0 5px hsl(var(--neon-cyan));
+    }
+    25% {
+      border-color: hsl(var(--neon-pink));
+      box-shadow: 0 0 5px hsl(var(--neon-pink)), inset 0 0 5px hsl(var(--neon-pink));
+    }
+    50% {
+      border-color: hsl(var(--neon-purple));
+      box-shadow: 0 0 5px hsl(var(--neon-purple)), inset 0 0 5px hsl(var(--neon-purple));
+    }
+    75% {
+      border-color: hsl(var(--neon-green));
+      box-shadow: 0 0 5px hsl(var(--neon-green)), inset 0 0 5px hsl(var(--neon-green));
+    }
+  }
+  
+  /* 应用动画类 */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out;
+  }
+  
+  /* 赛博朋克动画类 */
+  .animate-neon-glow {
+    animation: neon-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-neon-pink-glow {
+    animation: neon-pink-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-neon-purple-glow {
+    animation: neon-purple-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-neon-green-glow {
+    animation: neon-green-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-scan-lines {
+    animation: scan-lines 3s linear infinite;
+  }
+  
+  .animate-glitch {
+    animation: glitch 0.3s ease-in-out infinite;
+  }
+  
+  .animate-digital-rain {
+    animation: digital-rain 2s linear infinite;
+  }
+  
+  .animate-circuit-pulse {
+    animation: circuit-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-neon-border {
+    animation: neon-border 4s ease-in-out infinite;
+  }
+  
+  /* 动画延迟类 */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  /* 赛博朋克效果类 */
+  .cyberpunk-card {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cyberpunk-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--neon-cyan) / 0.1), transparent);
+    animation: scan-lines 3s linear infinite;
+  }
+  
+  /* 霓虹文字效果 */
+  .neon-text-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 5px hsl(var(--neon-cyan)), 0 0 10px hsl(var(--neon-cyan)), 0 0 15px hsl(var(--neon-cyan));
+  }
+  
+  .neon-text-pink {
+    color: hsl(var(--neon-pink));
+    text-shadow: 0 0 5px hsl(var(--neon-pink)), 0 0 10px hsl(var(--neon-pink)), 0 0 15px hsl(var(--neon-pink));
+  }
+  
+  .neon-text-purple {
+    color: hsl(var(--neon-purple));
+    text-shadow: 0 0 5px hsl(var(--neon-purple)), 0 0 10px hsl(var(--neon-purple)), 0 0 15px hsl(var(--neon-purple));
+  }
+  
+  .neon-text-green {
+    color: hsl(var(--neon-green));
+    text-shadow: 0 0 5px hsl(var(--neon-green)), 0 0 10px hsl(var(--neon-green)), 0 0 15px hsl(var(--neon-green));
+  }
+  
+  /* 霓虹边框效果 */
+  .neon-border-cyan {
+    border: 1px solid hsl(var(--neon-cyan));
+    box-shadow: 0 0 5px hsl(var(--neon-cyan)), inset 0 0 5px hsl(var(--neon-cyan) / 0.1);
+  }
+  
+  .neon-border-pink {
+    border: 1px solid hsl(var(--neon-pink));
+    box-shadow: 0 0 5px hsl(var(--neon-pink)), inset 0 0 5px hsl(var(--neon-pink) / 0.1);
+  }
+  
+  .neon-border-purple {
+    border: 1px solid hsl(var(--neon-purple));
+    box-shadow: 0 0 5px hsl(var(--neon-purple)), inset 0 0 5px hsl(var(--neon-purple) / 0.1);
+  }
+  
+  .neon-border-green {
+    border: 1px solid hsl(var(--neon-green));
+    box-shadow: 0 0 5px hsl(var(--neon-green)), inset 0 0 5px hsl(var(--neon-green) / 0.1);
+  }
+  
+  /* 霓虹按钮效果 */
+  .neon-button {
+    background: transparent;
+    border: 2px solid hsl(var(--neon-cyan));
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 5px hsl(var(--neon-cyan));
+    box-shadow: 0 0 5px hsl(var(--neon-cyan)), inset 0 0 5px hsl(var(--neon-cyan) / 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .neon-button:hover {
+    background: hsl(var(--neon-cyan) / 0.1);
+    box-shadow: 0 0 15px hsl(var(--neon-cyan)), inset 0 0 15px hsl(var(--neon-cyan) / 0.2);
+    text-shadow: 0 0 10px hsl(var(--neon-cyan));
+  }
+  
+  .neon-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--neon-cyan) / 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .neon-button:hover::before {
+    left: 100%;
+  }
+  
+  /* 电路板背景 */
+  .circuit-bg {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(var(--neon-cyan) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--neon-pink) / 0.1) 0%, transparent 50%),
+      linear-gradient(45deg, transparent 40%, hsl(var(--neon-green) / 0.05) 50%, transparent 60%);
+  }
+  
+  /* 扫描线效果 */
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--neon-cyan)), transparent);
+    animation: scan-lines 2s linear infinite;
+  }
+  
+  /* 故障效果 */
+  .glitch-effect {
+    position: relative;
+  }
+  
+  .glitch-effect::before,
+  .glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-effect::before {
+    animation: glitch 0.3s ease-in-out infinite;
+    color: hsl(var(--neon-pink));
+    z-index: -1;
+  }
+  
+  .glitch-effect::after {
+    animation: glitch 0.3s ease-in-out infinite reverse;
+    color: hsl(var(--neon-cyan));
+    z-index: -2;
+  }
+  
+  /* 数字雨背景 */
+  .digital-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .digital-rain::before {
+    content: '01010101010101010101010101010101010101010101';
+    position: absolute;
+    top: -100%;
+    left: 10%;
+    color: hsl(var(--neon-green) / 0.3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1;
+    animation: digital-rain 3s linear infinite;
+  }
+  
+  /* 终端风格 */
+  .terminal-style {
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--neon-green));
+    color: hsl(var(--neon-green));
+    font-family: 'JetBrains Mono', monospace;
+    text-shadow: 0 0 5px hsl(var(--neon-green));
+  }
+  
+  .terminal-style::before {
+    content: '> ';
+    color: hsl(var(--neon-cyan));
+  }
+}
