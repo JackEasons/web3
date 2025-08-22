@@ -4,16 +4,55 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useDisconnect } from 'wagmi';
 import { Wallet, Copy, ExternalLink } from 'lucide-react';
 import { formatAddress } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 /**
  * 钱包连接组件
  * 提供钱包连接、断开连接和状态显示功能
  */
 export function WalletConnection() {
+  const [mounted, setMounted] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  // 客户端检查，确保只在客户端使用wagmi hooks
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 在服务端或未挂载时显示加载状态
+  if (!mounted) {
+    return (
+      <div className="cyberpunk-card rounded-2xl p-8 neon-border-cyan animate-neon-border">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-2 neon-border-cyan rounded-xl animate-neon-glow">
+            <Wallet className="h-6 w-6 neon-text-cyan" />
+          </div>
+          <h2 className="text-2xl font-bold neon-text-cyan glitch-effect" data-text="钱包连接">钱包连接</h2>
+        </div>
+        <div className="text-center py-10">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-400 mx-auto mb-4"></div>
+          <span className="neon-text-cyan">正在加载钱包组件...</span>
+        </div>
+      </div>
+    );
+  }
+
+  return <WalletConnectionContent copied={copied} setCopied={setCopied} />;
+}
+
+/**
+ * 钱包连接内容组件
+ * 只在客户端渲染，使用wagmi hooks
+ */
+function WalletConnectionContent({ 
+  copied, 
+  setCopied 
+}: { 
+  copied: boolean; 
+  setCopied: (value: boolean) => void; 
+}) {
   const { address, isConnected, chain } = useAccount();
   const { disconnect } = useDisconnect();
-  const [copied, setCopied] = useState(false);
 
   /**
    * 复制地址到剪贴板
